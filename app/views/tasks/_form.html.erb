@@ -1,0 +1,24 @@
+<%= form_for(@task) do |f| %>
+
+  <div class="form-group">
+    <b><%= f.label :title %></b>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <b><%= f.label :details %></b>
+    <%= f.text_field :details, class: "form-control" %>
+  </div>
+  <% if !f.object.new_record? %>
+    <div class="form-group">
+      <% if @task.completed == false %>
+        <%= f.check_box :completed %> This task is not completed yet
+      <% else %>
+        <%= f.check_box :completed %> This task is completed
+      <% end %>
+    </div>
+  <% end %>
+  <% f.submit class: "btn btn-primary" %>
+<% end %>
+
+<hr>
+<p class="mt-3"><%= link_to "⤾ Back to home", tasks_path %></p>
